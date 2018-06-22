@@ -11,20 +11,10 @@ const db = pgp(cn);
 
 function getOne(id){
     return db.any('SELECT * FROM todolist where id=$1', [id])
-    // .then(function(data) {
-        // success;
-        // console.log(data);
-    // })
-    // .catch(function(error) {
-        // error;
-        // console.log(error);
-    // });
 };
 // getOne()
     // .then ((data) => {console.log(data);})
     // .catch ((error) => {console.log(error);})
-
-
 
 
 function getAll(){
@@ -34,17 +24,12 @@ function getAll(){
     // .then ((data) => {console.log(data);})
     // .catch ((error) => {console.log(error);})
 
-
-
 function getIncomplete(){
     return db.any('select * from todolist where isdone=$1', [false])
 }
 // getIncomplete()
     // .then((data) => {console.log(Data);})
     // .catch((error) => {console.log(error);})
-
-
-
 
 function getComplete(){
     return db.any('select * from todolist where isdone=$1', [true])
@@ -66,9 +51,10 @@ function getByString(srch){
 function setFinished(id, isDone){
     return db.result('update todolist set isdone=$1 where id=$2', [isDone, id])
 };
-setFinished(6, true)
-    .then((data) => {console.log(data);})
-    .catch((error) => {console.log(error);})
+// setFinished(6, true)
+    // .then((data) => {console.log(data);})
+    // .catch((error) => {console.log(error);})
+
 
 function deleteById(id){
     return db.result('delete from todolist where id=$1', [id])
@@ -77,6 +63,15 @@ function deleteById(id){
     // .then((data) => {console.log(data);})
     // .catch((error) => {console.log(error);})
 
+
+function changeTitle(id, newTitle){
+    return db.result('update todolist set title=$1 where id=$2', [newTitle, id])
+};
+changeTitle(2, 'brush the dog')
+    .then((data) => {console.log(data);})
+    .catch((error) => {console.log(error);})
+
+
 module.exports = {
     getOne,
     getIncomplete,
@@ -84,6 +79,7 @@ module.exports = {
     getAll,
     getByString,
     deleteById,
-    setFinished
+    setFinished,
+    changeTitle
 };
 
