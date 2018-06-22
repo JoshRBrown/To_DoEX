@@ -14,6 +14,15 @@ app.get('/', (req, res) => {
         })            
 });
 
+app.get('/:id', (req, res) => {
+    toDo.getOne(req.params.id)
+        .then ((data) => {
+            res.send(data)})
+        .catch((error) => {
+            console.log(error)
+        })
+});
+
 
 app.listen(5000, () => {
     console.log('Someones here');
