@@ -86,6 +86,7 @@ module.exports = {
     getByString,
     deleteById,
     setFinished,
-    changeTitle
+    changeTitle,
+    newTask
 };
 
