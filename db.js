@@ -63,16 +63,16 @@ function getByString(srch){
     // .catch((error) => {console.log(error);})
 
 
-function setItemFinished(id){
-    return db.none('update todolist set isdone=true where id=$1', [id])
+function setFinished(id, isDone){
+    return db.result('update todolist set isdone=$1 where id=$2', [isDone, id])
 };
+setFinished(6, true)
+    .then((data) => {console.log(data);})
+    .catch((error) => {console.log(error);})
 
 function deleteById(id){
     return db.result('delete from todolist where id=$1', [id])
 };
-setItemFinished(5)
-    .then((data) => {console.log(data);})
-    .catch((error) => {console.log(error);})
 // deleteById(11)
     // .then((data) => {console.log(data);})
     // .catch((error) => {console.log(error);})
@@ -82,6 +82,8 @@ module.exports = {
     getIncomplete,
     getComplete,
     getAll,
-    getByString
+    getByString,
+    deleteById,
+    setFinished
 };
 
