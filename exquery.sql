@@ -34,3 +34,7 @@ update todolist
 update todolist
     set title='blue'
     where id=1;
+
+-- delete a todo by id
+delete from todolist
+    where id=4;
