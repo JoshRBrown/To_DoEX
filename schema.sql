@@ -1,5 +1,5 @@
-create table ToDoList (
+create table todolist (
     id serial primary key,
-    Title varchar(300),
-    IsDone boolean
+    title varchar(300),
+    isdone boolean
 );
