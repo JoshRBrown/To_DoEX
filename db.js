@@ -57,12 +57,25 @@ function getComplete(){
 
 function getByString(srch){
     return db.any('select * from todolist where title ilike $1', [`%${srch}%`])
-}
+};
 // getByString('sc')
     // .then((data) => {console.log(data);})
     // .catch((error) => {console.log(error);})
 
 
+function setItemFinished(id){
+    return db.none('update todolist set isdone=true where id=$1', [id])
+};
+
+function deleteById(id){
+    return db.result('delete from todolist where id=$1', [id])
+};
+setItemFinished(5)
+    .then((data) => {console.log(data);})
+    .catch((error) => {console.log(error);})
+// deleteById(11)
+    // .then((data) => {console.log(data);})
+    // .catch((error) => {console.log(error);})
 
 module.exports = {
     getOne,
