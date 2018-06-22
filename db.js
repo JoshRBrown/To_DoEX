@@ -27,7 +27,11 @@ function getAll(){
 function getIncomplete(){
     return db.any('select * from todolist where isdone=$1', [false])
 }
-getAll()
+function getComplete(){
+    return db.any('select * from todolist where isdone=$1', [true])
+}
+
+getComplete()
     .then ((data) => {console.log(data);})
     .catch ((error) => {console.log(error);})
 
@@ -36,6 +40,7 @@ getAll()
 module.exports = {
     getOne,
     getIncomplete,
+    getComplete,
     getAll
 };
 
