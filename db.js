@@ -67,10 +67,16 @@ function deleteById(id){
 function changeTitle(id, newTitle){
     return db.result('update todolist set title=$1 where id=$2', [newTitle, id])
 };
-changeTitle(2, 'brush the dog')
+// changeTitle(2, 'brush the dog')
+    // .then((data) => {console.log(data);})
+    // .catch((error) => {console.log(error);})
+
+function newTask(title, isDone) {
+    return db.one('insert into todolist(title, isdone) values($1, $2)', [title, isDone])
+}
+newTask('go to bed', false)
     .then((data) => {console.log(data);})
     .catch((error) => {console.log(error);})
-
 
 module.exports = {
     getOne,
