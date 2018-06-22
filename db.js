@@ -72,11 +72,11 @@ function changeTitle(id, newTitle){
     // .catch((error) => {console.log(error);})
 
 function newTask(title, isDone) {
-    return db.one('insert into todolist(title, isdone) values($1, $2)', [title, isDone])
+    return db.one('insert into todolist(title, isdone) values($1, $2) returning id', [title, isDone])
 }
-newTask('go to bed', false)
-    .then((data) => {console.log(data);})
-    .catch((error) => {console.log(error);})
+// newTask('go to bed', true)
+    // .then((data) => {console.log(data);})
+    // .catch((error) => {console.log(error);})
 
 module.exports = {
     getOne,
