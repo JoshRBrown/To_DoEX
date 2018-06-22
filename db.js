@@ -9,20 +9,33 @@ const cn = {
 const db = pgp(cn);
 
 
-function getToDo(id){
-    db.any('SELECT * FROM todolist where id=$1', [id])
-    .then(function(data) {
+function getOne(id){
+    return db.oneOrnone('SELECT * FROM todolist where id=$1', [id])
+    // .then(function(data) {
         // success;
-        console.log(data);
-    })
-    .catch(function(error) {
+        // console.log(data);
+    // })
+    // .catch(function(error) {
         // error;
-        console.log(error);
-    });
+        // console.log(error);
+    // });
 };
+function getAll(){
+    return db.any('SELECT * FROM todolist')
+}
+
+function getIncomplete(){
+    return db.any('select * from todolist where isdone=$1', [false])
+}
+getAll()
+    .then ((data) => {console.log(data);})
+    .catch ((error) => {console.log(error);})
 
 
 
 module.exports = {
-    getToDo
+    getOne,
+    getIncomplete,
+    getAll
 };
+
